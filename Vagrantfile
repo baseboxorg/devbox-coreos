@@ -7,6 +7,10 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "baseboxorg/devbox-coreos"
 
+  config.push.define "atlas" do |push|
+    push.app = "baseboxorg/devbox-coreos-app"
+  end
+
   if (/linux/ =~ RUBY_PLATFORM) != nil
     # Allows chown operations in the shared folders
     # Fixes `npm install` execution in containers with volumes
